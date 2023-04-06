@@ -99,10 +99,10 @@ class Metabox_Generator {
         }   
         $term = get_term_by( 'slug', 'is_on_sale', 'el_products_sales' );
         
-        if(!empty($_POST['custom_metabox_field_sale_price'])){
-            wp_set_post_terms( $post_id, $term->term_id, 'el_products_sales', true );
-        } else {
+        if(empty($_POST['custom_metabox_field_sale_price'])){
             wp_remove_object_terms( $post_id, $term->term_id , 'el_products_sales' );
+        } else {
+            wp_set_post_terms( $post_id, $term->term_id, 'el_products_sales', true );
         }
 
     }
