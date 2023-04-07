@@ -9,12 +9,17 @@ function product_shortcode( $atts ) {
     if(empty($atts['id'])){
         return '';
     }
+
+    $atts['id'] = apply_filters( 'product_box_id', $atts['id'] );
+
     $id = filter_var($atts['id'], FILTER_SANITIZE_NUMBER_INT);
+
     $thumbnail = get_the_post_thumbnail( $id, 'large', array( 'class' => 'post-thumbnail' ) );
 
   
     // Get box background color
     $bg_color = filter_var($atts['bg_color'], FILTER_SANITIZE_STRING);
+
     if(!empty($bg_color)){
         $bg_color = 'style="background-color:' . $bg_color . '"';
     }
@@ -37,6 +42,8 @@ function product_shortcode( $atts ) {
     $output .= '<p>' . $price_html . '</p>';
     $output .= '</div>';
   
+    $output = apply_filters( 'product_box_html', $output );
+
     return $output;
   }
   add_shortcode( 'product_box', 'product_shortcode' );
