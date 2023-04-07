@@ -32,6 +32,7 @@ function product_shortcode( $atts ) {
     if(!empty($sale_price)){
         $price_html = '<strike>' . $price . '</strike><br>';
         $price_html .= '<b>' . $sale_price . '</b>'; 
+        $price_html .= '<h5 class="el-product_sale-badge">Product on Sale!</h5>';
     }
 
   
